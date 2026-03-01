@@ -1,7 +1,7 @@
-package com.policene.to_do_list.models;
+package com.policene.to_do_list.domain.model;
 
-import com.policene.to_do_list.models.enums.TaskPriority;
-import com.policene.to_do_list.models.enums.TaskStatus;
+import com.policene.to_do_list.domain.model.enums.TaskPriority;
+import com.policene.to_do_list.domain.model.enums.TaskStatus;
 import jakarta.persistence.*;
 import lombok.*;
 

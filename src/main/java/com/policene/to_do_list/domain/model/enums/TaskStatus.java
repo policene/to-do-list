@@ -1,4 +1,4 @@
-package com.policene.to_do_list.models.enums;
+package com.policene.to_do_list.domain.model.enums;
 
 public enum TaskStatus {
 
