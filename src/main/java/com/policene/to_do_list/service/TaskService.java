@@ -50,4 +50,12 @@ public class TaskService {
         return TaskMapper.toDto(found);
     }
 
+    public void delete (Long id) {
+        Task found = taskRepository.findById(id)
+                .orElseThrow(() -> new TaskNotFoundException(id));
+
+        found.setActive(false);
+        taskRepository.save(found);
+    }
+
 }
