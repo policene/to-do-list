@@ -5,6 +5,7 @@ import com.policene.to_do_list.domain.specification.TaskSpecification;
 import com.policene.to_do_list.dto.TaskFilterDTO;
 import com.policene.to_do_list.dto.TaskRequestDTO;
 import com.policene.to_do_list.dto.TaskResponseDTO;
+import com.policene.to_do_list.exception.TaskNotFoundException;
 import com.policene.to_do_list.mapper.TaskMapper;
 import com.policene.to_do_list.domain.model.Task;
 import com.policene.to_do_list.domain.model.enums.TaskPriority;
@@ -14,6 +15,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import java.util.NoSuchElementException;
 
 @Service
 public class TaskService {
@@ -31,7 +34,6 @@ public class TaskService {
     }
 
     public Page<TaskResponseDTO> getActiveTasks (Pageable pageable, TaskFilterDTO filter) {
-
         Specification<Task> specification = TaskSpecification.isActive()
                 .and(TaskSpecification.hasStatus(filter.status()))
                 .and(TaskSpecification.hasPriority(filter.priority()));
@@ -39,7 +41,13 @@ public class TaskService {
         Page<Task> tasksFound = taskRepository.findAll(specification, pageable);
 
         return tasksFound.map(TaskMapper::toDto);
+    }
 
+    public TaskResponseDTO getById (Long id) {
+        Task found = taskRepository.findById(id)
+                .orElseThrow(() -> new TaskNotFoundException(id));
+
+        return TaskMapper.toDto(found);
     }
 
 }

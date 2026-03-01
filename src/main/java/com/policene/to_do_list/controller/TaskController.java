@@ -33,10 +33,15 @@ public class TaskController {
 
     @GetMapping
     public ResponseEntity<Page<TaskResponseDTO>> listAll (
-            @PageableDefault(page = 0, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
+            @PageableDefault(page = 0, size = 5, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
             TaskFilterDTO filter
             ) {
         return new ResponseEntity<>(taskService.getActiveTasks(pageable, filter), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TaskResponseDTO> getById (@PathVariable Long id) {
+        return new ResponseEntity<>(taskService.getById(id), HttpStatus.OK);
     }
 
 }
