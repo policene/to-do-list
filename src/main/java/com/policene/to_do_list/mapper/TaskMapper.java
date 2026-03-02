@@ -1,7 +1,7 @@
 package com.policene.to_do_list.mapper;
 
-import com.policene.to_do_list.dto.TaskRequestDTO;
-import com.policene.to_do_list.dto.TaskResponseDTO;
+import com.policene.to_do_list.dto.request.TaskCreateDTO;
+import com.policene.to_do_list.dto.response.TaskResponseDTO;
 import com.policene.to_do_list.domain.model.Task;
 import com.policene.to_do_list.domain.model.enums.TaskStatus;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class TaskMapper {
 
-   public static Task toEntity (TaskRequestDTO dto) {
+   public static Task toEntity (TaskCreateDTO dto) {
         return Task
                 .builder()
                 .id(null)

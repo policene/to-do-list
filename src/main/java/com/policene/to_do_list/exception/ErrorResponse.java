@@ -23,5 +23,13 @@ public class ErrorResponse {
         this.timestamp = Instant.now();
     }
 
+    public ErrorResponse (HttpStatus httpStatus, String message, HttpServletRequest request) {
+        this.error = httpStatus.getReasonPhrase();
+        this.message = message;
+        this.url = request.getRequestURI();
+        this.status = httpStatus.value();
+        this.timestamp = Instant.now();
+    }
+
 
 }

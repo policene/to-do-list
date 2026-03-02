@@ -1,4 +1,4 @@
-package com.policene.to_do_list.dto;
+package com.policene.to_do_list.dto.request;
 
 import com.policene.to_do_list.domain.model.enums.TaskPriority;
 import com.policene.to_do_list.domain.model.enums.TaskStatus;
